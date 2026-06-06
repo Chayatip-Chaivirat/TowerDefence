@@ -28,6 +28,9 @@ namespace Tower_Defence
 
         // Enemy's start
         public static Texture2D startPointTexture;
+
+        // Treasure chest 
+        public static Texture2D treasureChestTexture;
         public static void LoadTexture(ContentManager content)
         {
             // Boar
@@ -50,6 +53,9 @@ namespace Tower_Defence
 
             // Start Point
             startPointTexture = content.Load<Texture2D>(@"Content\VillageAsset\PNG\Top-Down Simple Summer_Prop - Bushes Large.png");
+
+            // Treasure Chest
+            treasureChestTexture = content.Load<Texture2D>(@"Content\VillageAsset\PNG\Top-Down Simple Summer_Prop - Treasure Chest.png");
         }
     }
 }
