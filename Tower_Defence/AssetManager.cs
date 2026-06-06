@@ -34,28 +34,28 @@ namespace Tower_Defence
         public static void LoadTexture(ContentManager content)
         {
             // Boar
-            boarAttack = content.Load<Texture2D>(@"Content\AnimalSprites\PNG\Without_shadow\Boar\Boar_Attack.png");
-            boarWalk = content.Load<Texture2D>(@"Content\AnimalSprites\PNG\Without_shadow\Boar\Boar_Walk.png");
-            boarHurt = content.Load<Texture2D>(@"Content\AnimalSprites\PNG\Without_shadow\Boar\Boar_Hurt.png");
-            boarDeath = content.Load<Texture2D>(@"Content\AnimalSprites\PNG\Without_shadow\Boar\Boar_Death.png");
+            boarAttack = content.Load<Texture2D>("AnimalSprites/PNG/Without_shadow/Boar/Boar_Attack");
+            boarWalk = content.Load<Texture2D>("AnimalSprites/PNG/Without_shadow/Boar/Boar_Walk");
+            boarHurt = content.Load<Texture2D>("AnimalSprites/PNG/Without_shadow/Boar/Boar_Hurt");
+            boarDeath = content.Load<Texture2D>("AnimalSprites/PNG/Without_shadow/Boar/Boar_Death");
 
             // Archer Tower
-            archerTowerBaseLevel = content.Load<Texture2D>(@"Content\ArcherTowerSprites\2 Idle\2.png");
-            archerTowerLevel1 = content.Load<Texture2D>(@"Content\ArcherTowerSprites\2 Idle\3.png");
-            archerTowerLevel2 = content.Load<Texture2D>(@"Content\ArcherTowerSprites\2 Idle\4.png");
+            archerTowerBaseLevel = content.Load<Texture2D>("ArcherTowerSprites/2 Idle/2");
+            archerTowerLevel1 = content.Load<Texture2D>("ArcherTowerSprites/2 Idle/3");
+            archerTowerLevel2 = content.Load<Texture2D>("ArcherTowerSprites/2 Idle/4");
 
             // Wooden Tower
-            woodenTowerLevel1 = content.Load<Texture2D>(@"Content\VillageAsset\PNG\Top-Down Simple Summer_Prop - Watchtower Short.png");
-            woodenTowerLevel2 = content.Load<Texture2D>(@"Content\VillageAsset\PNG\Top-Down Simple Summer_Prop - Watchtower Tall.png");
+            woodenTowerLevel1 = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Watchtower Short");
+            woodenTowerLevel2 = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Watchtower Tall");
 
             // Goal
-            goalTexture = content.Load<Texture2D>(@"Content\VillageAsset\PNG\Top-Down Simple Summer_Prop - Tent.png");
+            goalTexture = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Tent");
 
             // Start Point
-            startPointTexture = content.Load<Texture2D>(@"Content\VillageAsset\PNG\Top-Down Simple Summer_Prop - Bushes Large.png");
+            startPointTexture = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Bushes Large");
 
             // Treasure Chest
-            treasureChestTexture = content.Load<Texture2D>(@"Content\VillageAsset\PNG\Top-Down Simple Summer_Prop - Treasure Chest.png");
+            treasureChestTexture = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Treasure Chest");
         }
     }
 }

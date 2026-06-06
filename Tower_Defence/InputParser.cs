@@ -22,6 +22,11 @@ namespace Tower_Defence
         {
             string[] strings = input.Split(',');
             int [] result = new int[strings.Length];
+
+            for (int i = 0; i < strings.Length; i++)
+            {
+                result[i] = ParseInt(strings[i]);
+            }
             return result;
         }
     }

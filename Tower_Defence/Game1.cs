@@ -19,16 +19,13 @@ namespace Tower_Defence
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            AssetManager.LoadTexture(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,7 +42,9 @@ namespace Tower_Defence
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(AssetManager.boarAttack, new Vector2(100, 100), Color.White);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
