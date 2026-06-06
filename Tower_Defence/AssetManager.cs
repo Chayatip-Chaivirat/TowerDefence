@@ -6,7 +6,7 @@ using Spline;
 
 namespace Tower_Defence
 {
-    static class AssetManager
+    public static class AssetManager
     {
         // Boar textures
         public static Texture2D boarAttack;
