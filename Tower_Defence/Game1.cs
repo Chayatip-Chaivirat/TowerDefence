@@ -10,6 +10,9 @@ namespace Tower_Defence
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        SimplePath _path;
+        Level level;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -20,12 +23,16 @@ namespace Tower_Defence
         protected override void Initialize()
         {
             base.Initialize();
+            _graphics.PreferredBackBufferHeight = 650;
+            _graphics.ApplyChanges();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             AssetManager.LoadTexture(Content);
+            _path = new SimplePath(GraphicsDevice);
+            level = new Level(_path);
         }
 
         protected override void Update(GameTime gameTime)
@@ -43,6 +50,8 @@ namespace Tower_Defence
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+
+            level.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
