@@ -18,6 +18,11 @@ namespace Tower_Defence
         private int towerLevel;
         private string towerType;
         public bool isPlaceable = true; // Flag to determine if the tower can be placed at the current position
+        public bool isSelected = false; // Flag to determine if the tower is currently selected by the player
+        public int towerCost;
+        public int upgradeCost;
+
+        Economy economy;
 
         public Tower(Vector2 pos, Rectangle texRec, string type) // Constructor for the Tower class
         {
@@ -44,10 +49,12 @@ namespace Tower_Defence
                 if (towerType == "Wooden")
                 {
                     towerTexture = AssetManager.woodenTowerLevel1;
+                    upgradeCost = 20;
                 }
                 else if (towerType == "Archer")
                 {
                     towerTexture = AssetManager.archerTowerLevel1;
+                    upgradeCost = 40;
                 }
             }
             else if (towerLevel == 3)
@@ -57,11 +64,22 @@ namespace Tower_Defence
                 if (towerType == "Wooden")
                 {
                     towerTexture = AssetManager.woodenTowerLevel2;
+                    upgradeCost = 30;
                 }
                 else if (towerType == "Archer")
                 {
                     towerTexture = AssetManager.archerTowerLevel2;
+                    upgradeCost = 50;
                 }
+            }
+        }
+
+        public void UpgradeTower()
+        {
+            if (isSelected &&towerLevel < 3)
+            {
+                towerLevel++;
+                DamageBasedOnLevel();
             }
         }
 
@@ -72,6 +90,7 @@ namespace Tower_Defence
                 towerTexture = AssetManager.woodenTowerBaseLevel;
                 towerDamage = 10;
                 towerRange = 40;
+                towerCost = 10;
                 towerHitbox = new Rectangle((int)towerPos.X - towerRange, (int)towerPos.Y - towerRange, (int)towerRange * 2, (int)towerRange * 2); // Update the hitbox based on the tower's position and range
             }
             else if (towerType == "Archer")
@@ -79,6 +98,7 @@ namespace Tower_Defence
                 towerTexture = AssetManager.archerTowerBaseLevel;
                 towerDamage = 5;
                 towerRange = 90;
+                towerCost = 30;
                 towerHitbox = new Rectangle((int)towerPos.X - towerRange, (int)towerPos.Y - towerRange, (int)towerRange * 2, (int)towerRange * 2); // Update the hitbox based on the tower's position and range
             }
         }
@@ -87,6 +107,7 @@ namespace Tower_Defence
         {
             DamageBasedOnLevel();
             TowerType();
+            UpgradeTower();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -95,7 +116,11 @@ namespace Tower_Defence
             {
                 spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.White);
             }
-            else
+            else if (isSelected)
+            {
+                spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.Green * 0.5f); // Draw the tower with a green tint to indicate that it is selected
+            }
+            else if (!isPlaceable)
             {
                 spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.Red);
             }

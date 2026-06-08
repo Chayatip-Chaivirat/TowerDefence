@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Spline;
 namespace Tower_Defence
 {
     public static class TowerPlacementManager
@@ -17,9 +15,13 @@ namespace Tower_Defence
             {
                 tower.isPlaceable = false;
             }
+            else
+            {
+                tower.isPlaceable = true;
+            }
         }
 
-        public static void PlaceTower()
+        public static void NotPlaceableOnPath()
         {
             if (!path.placeableForTower)
             {

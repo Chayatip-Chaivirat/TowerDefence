@@ -16,6 +16,8 @@ namespace Tower_Defence
         private int enemyDamage;
         private int enemySpeed;
         private int enemyLevel;
+
+        Economy economy;
         public Enemy(Texture2D tex, Vector2 pos, Rectangle texRec) // Constructor for the Enemy class
         {
             this.enemyTexture = tex;
@@ -59,6 +61,7 @@ namespace Tower_Defence
         {
             if (enemyHealth <= 0)
             {
+                economy.gold += 10 + enemyLevel;
                 enemies.Remove(this);
             }
         }
