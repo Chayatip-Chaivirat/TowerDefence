@@ -8,7 +8,7 @@ namespace Tower_Defence
     public class Level
     {
         SimplePath path;
-        float posTex;
+        public float posTex;
         public bool placeableForTower = false; // Not placeable for tower 
 
         public Level(SimplePath path)   

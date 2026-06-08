@@ -18,11 +18,11 @@ namespace Tower_Defence
         private int enemyLevel;
 
         Economy economy;
-        public Enemy(Texture2D tex, Vector2 pos, Rectangle texRec) // Constructor for the Enemy class
+        public Enemy(Vector2 pos) // Constructor for the Enemy class
         {
-            this.enemyTexture = tex;
+            enemyTexture = AssetManager.boarWalk;
             this.enemyPos = pos;
-            this.enemyTexRec = texRec;
+            this.enemyTexRec = new Rectangle(0, 0, 26, 26);
             enemyLevel = 1;
             enemyDamage = 0;
             enemyHealth = 0;

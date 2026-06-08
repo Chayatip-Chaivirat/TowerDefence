@@ -45,6 +45,7 @@ namespace Tower_Defence
             enemyList = new List<Enemy>();
             BuildTower();
             economy = new Economy(new Vector2(10, 10));
+            SpawnEnemy();
         }
 
         public void BuildTower()
@@ -56,22 +57,29 @@ namespace Tower_Defence
 
             if (PlayerKeyReader.KeyPressed(Keys.E))
             {
-                tower = new Tower(new Vector2(x, y), "Wooden");
                 if (TowerPlacementManager.isPlaceable && economy.gold >= tower.towerCost)
                 {
+                    tower = new Tower(new Vector2(x, y), "Wooden");
                     towerList.Add(tower);
                     economy.gold -= tower.towerCost;
                 }
             }
             else if (PlayerKeyReader.KeyPressed(Keys.Q))
             {
-                tower = new Tower(new Vector2(x, y), "Archer");
                 if (TowerPlacementManager.isPlaceable && economy.gold >= tower.towerCost)
                 {
+                    tower = new Tower(new Vector2(x, y), "Archer");
                     towerList.Add(tower);
                     economy.gold -= tower.towerCost;
                 }
             }
+        }
+
+        public void SpawnEnemy()
+        {
+            // Spawn enemies at the beginning of the path and add them to the enemy list
+            enemy = new Enemy(_path.GetPos(level.posTex));
+            enemyList.Add(enemy);
         }
 
         protected override void Update(GameTime gameTime)
@@ -84,12 +92,17 @@ namespace Tower_Defence
                 tower.Update(gameTime);
             }
 
+            foreach (Enemy enemy in enemyList)
+            {
+                enemy.Update(enemyList, gameTime);
+            }
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.LightGreen);
 
             _spriteBatch.Begin();
 
