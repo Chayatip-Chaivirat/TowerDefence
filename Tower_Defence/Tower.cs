@@ -17,6 +17,7 @@ namespace Tower_Defence
         private int towerRange;
         private int towerLevel;
         private string towerType;
+        public bool isPlaceable = true; // Flag to determine if the tower can be placed at the current position
 
         public Tower(Texture2D tex, Vector2 pos, Rectangle texRec, string type) // Constructor for the Tower class
         {
@@ -73,7 +74,14 @@ namespace Tower_Defence
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.White);
-        }
+            if (isPlaceable)
+            {
+                spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.Red);
+            }
     }
+}
 }
