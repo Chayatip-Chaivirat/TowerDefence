@@ -19,9 +19,8 @@ namespace Tower_Defence
         private string towerType;
         public bool isPlaceable = true; // Flag to determine if the tower can be placed at the current position
 
-        public Tower(Texture2D tex, Vector2 pos, Rectangle texRec, string type) // Constructor for the Tower class
+        public Tower(Vector2 pos, Rectangle texRec, string type) // Constructor for the Tower class
         {
-            this.towerTexture = tex;
             this.towerPos = pos;
             this.towerRange = 0;
             this.towerTexRec = texRec;
@@ -42,11 +41,27 @@ namespace Tower_Defence
             {
                 towerDamage += 20;
                 towerRange += 20;
+                if (towerType == "Wooden")
+                {
+                    towerTexture = AssetManager.woodenTowerLevel1;
+                }
+                else if (towerType == "Archer")
+                {
+                    towerTexture = AssetManager.archerTowerLevel1;
+                }
             }
             else if (towerLevel == 3)
             {
                 towerDamage += 30;
                 towerRange += 30;
+                if (towerType == "Wooden")
+                {
+                    towerTexture = AssetManager.woodenTowerLevel2;
+                }
+                else if (towerType == "Archer")
+                {
+                    towerTexture = AssetManager.archerTowerLevel2;
+                }
             }
         }
 
@@ -54,12 +69,14 @@ namespace Tower_Defence
         {
             if (towerType == "Wooden") 
             {
+                towerTexture = AssetManager.woodenTowerBaseLevel;
                 towerDamage = 10;
                 towerRange = 40;
                 towerHitbox = new Rectangle((int)towerPos.X - towerRange, (int)towerPos.Y - towerRange, (int)towerRange * 2, (int)towerRange * 2); // Update the hitbox based on the tower's position and range
             }
             else if (towerType == "Archer")
             {
+                towerTexture = AssetManager.archerTowerBaseLevel;
                 towerDamage = 5;
                 towerRange = 90;
                 towerHitbox = new Rectangle((int)towerPos.X - towerRange, (int)towerPos.Y - towerRange, (int)towerRange * 2, (int)towerRange * 2); // Update the hitbox based on the tower's position and range

@@ -20,6 +20,7 @@ namespace Tower_Defence
         public static Texture2D archerTowerLevel2;
 
         // Wooden Tower textures
+        public static Texture2D woodenTowerBaseLevel;
         public static Texture2D woodenTowerLevel1;
         public static Texture2D woodenTowerLevel2;
 
@@ -45,6 +46,7 @@ namespace Tower_Defence
             archerTowerLevel2 = content.Load<Texture2D>("ArcherTowerSprites/2 Idle/4");
 
             // Wooden Tower
+            woodenTowerBaseLevel = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Tree Stump Tall");
             woodenTowerLevel1 = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Watchtower Short");
             woodenTowerLevel2 = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Watchtower Tall");
 
