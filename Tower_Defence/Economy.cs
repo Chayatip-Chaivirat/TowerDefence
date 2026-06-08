@@ -25,7 +25,7 @@ namespace Tower_Defence
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(AssetManager.treasureChestTexture, pos, texRec, Color.White);
+            spriteBatch.Draw(AssetManager.treasureChestTexture, pos, texRec, Color.White, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 0);
         }
     }
 }

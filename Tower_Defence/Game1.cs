@@ -21,6 +21,8 @@ namespace Tower_Defence
         Tower tower;
         List<Tower> towerList;
 
+        SpriteFont font;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -46,6 +48,7 @@ namespace Tower_Defence
             BuildTower();
             economy = new Economy(new Vector2(10, 10));
             SpawnEnemy();
+            font = Content.Load<SpriteFont>("Font");
         }
 
         public void BuildTower()
@@ -116,6 +119,9 @@ namespace Tower_Defence
             {
                 enemy.Draw(_spriteBatch);
             }
+
+            economy.Draw(_spriteBatch);
+            _spriteBatch.DrawString(font, " " + economy.gold, new Vector2(30, 10), Color.DarkGoldenrod);
 
             _spriteBatch.End();
 

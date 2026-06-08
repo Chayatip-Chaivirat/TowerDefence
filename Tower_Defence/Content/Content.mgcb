@@ -133,6 +133,13 @@
 /processorParam:TextureFormat=Color
 /build:ArcherTowerSprites/2 Idle/4.png
 
+#begin Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font.spritefont
+
 #begin VillageAsset/PNG/Top-Down Simple Summer_Prop - Bushes Large.png
 /importer:TextureImporter
 /processor:TextureProcessor
