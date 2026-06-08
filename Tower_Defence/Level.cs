@@ -9,12 +9,14 @@ namespace Tower_Defence
     {
         SimplePath path;
         float posTex;
-        
+        public bool placeableForTower = false; // Not placeable for tower 
+
         public Level(SimplePath path)   
         {
             this.path = path;
             path.generateDefaultPath();
             posTex = path.beginT;
+            placeableForTower = false;
         }
 
         public void Update(GameTime gameTime)

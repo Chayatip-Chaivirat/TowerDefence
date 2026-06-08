@@ -11,7 +11,7 @@ namespace Tower_Defence
     {
         private Vector2 towerPos;
         private Rectangle towerHitbox;
-        private Rectangle towerTexRec;
+        public Rectangle towerTexRec;
         private Texture2D towerTexture;
         private int towerDamage;
         private int towerRange;
