@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using SharpDX.MediaFoundation;
 using Spline;
 using System;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Tower_Defence
 {
@@ -26,49 +27,60 @@ namespace Tower_Defence
         public Tower(Vector2 pos, string type) // Constructor for the Tower class
         {
             this.towerPos = pos;
-            this.towerRange = 0;
             this.towerTexRec = new Rectangle(0, 0, 150, 150); // Default texture rectangle
             this.towerType = type;
             this.towerLevel = 1;
             towerHitbox = new Rectangle((int)towerRange, (int)towerRange, (int)towerRange, (int)towerRange); // Initialize the hitbox with the tower's range
-            towerDamage = 0;
-            this.towerCost = 0;
+            TowerType();
+            economy = new Economy(new Vector2(10, 10)); // Initialize the economy object
         }
 
         public void DamageBasedOnLevel()
         {
             if (towerLevel == 1)
             {
-                towerDamage += 10;
-                towerRange += 10;
+                if (towerType == "Wooden")
+                {
+                    towerDamage = 10;
+                    towerRange = 50;
+                }
+                else if (towerType == "Archer")
+                {
+                    towerDamage = 5;
+                    towerRange = 100;
+                }
             }
             else if (towerLevel == 2)
             {
-                towerDamage += 20;
-                towerRange += 20;
                 if (towerType == "Wooden")
                 {
                     towerTexture = AssetManager.woodenTowerLevel1;
+                    towerDamage = 30;
+                    towerRange = 60;
                     upgradeCost = 20;
                 }
                 else if (towerType == "Archer")
                 {
                     towerTexture = AssetManager.archerTowerLevel1;
+                    towerDamage = 25;
+                    towerRange = 110;
                     upgradeCost = 40;
                 }
             }
             else if (towerLevel == 3)
             {
-                towerDamage += 30;
-                towerRange += 30;
                 if (towerType == "Wooden")
                 {
                     towerTexture = AssetManager.woodenTowerLevel2;
+                    towerDamage = 40;
+                    towerRange = 70;
                     upgradeCost = 30;
                 }
                 else if (towerType == "Archer")
                 {
                     towerTexture = AssetManager.archerTowerLevel2;
+                    towerDamage = 35;
+                    towerRange = 120;
                     upgradeCost = 50;
                 }
             }
@@ -76,8 +88,14 @@ namespace Tower_Defence
 
         public void SelectTower()
         {
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && towerHitbox.Contains(Mouse.GetState().Position))
+            {
                 isSelected = true; // Set the tower as selected when the player clicks on it
+            }
+            else
+            {
+                isSelected = false; // Set the tower as not selected when the player clicks elsewhere
+            }
         }
 
         public void UpgradeTower()
@@ -95,8 +113,6 @@ namespace Tower_Defence
             if (towerType == "Wooden") 
             {
                 towerTexture = AssetManager.woodenTowerBaseLevel;
-                towerDamage = 10;
-                towerRange = 40;
                 towerCost = 10;
                 towerHitbox = new Rectangle((int)towerPos.X - towerRange, (int)towerPos.Y - towerRange, (int)towerRange * 2, (int)towerRange * 2); // Update the hitbox based on the tower's position and range
                 towerTexRec = new Rectangle(0, 0, 150, 150); // Set the texture rectangle for the wooden tower
@@ -104,8 +120,6 @@ namespace Tower_Defence
             else if (towerType == "Archer")
             {
                 towerTexture = AssetManager.archerTowerBaseLevel;
-                towerDamage = 5;
-                towerRange = 90;
                 towerCost = 30;
                 towerHitbox = new Rectangle((int)towerPos.X - towerRange, (int)towerPos.Y - towerRange, (int)towerRange * 2, (int)towerRange * 2); // Update the hitbox based on the tower's position and range
                 towerTexRec = new Rectangle(0, 0, 70, 130); // Set the texture rectangle for the archer tower
@@ -122,14 +136,10 @@ namespace Tower_Defence
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (TowerPlacementManager.isPlaceable)
-            {
-                spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.White);
-            }
-            else if (isSelected)
-            {
-                spriteBatch.Draw(towerTexture, towerPos, towerTexRec, Color.Green * 0.5f); // Draw the tower with a green tint to indicate that it is selected
-            }
+            Color color = isSelected ? Color.Green * 0.5f : Color.White; // Change the color of the tower when it is selected
+            float scale = (towerType == "Wooden" ? 0.3f : 0.8f); // Set the scale based on the tower type
+
+            spriteBatch.Draw(towerTexture, towerPos, towerTexRec, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+        }
     }
-}
 }

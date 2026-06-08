@@ -58,22 +58,24 @@ namespace Tower_Defence
             int x = PlayerKeyReader.mouseState.X;
             int y = PlayerKeyReader.mouseState.Y;
 
-            if (PlayerKeyReader.KeyPressed(Keys.E))
+            if (PlayerKeyReader.KeyPressed(Keys.E)) 
             {
-                if (TowerPlacementManager.isPlaceable && economy.gold >= tower.towerCost)
+                Tower newTower = new Tower(new Vector2(x, y), "Wooden"); // Create a new tower at the mouse's position
+
+                if (economy.gold >= newTower.towerCost) // Check if the player has enough gold to build the tower
                 {
-                    tower = new Tower(new Vector2(x, y), "Wooden");
-                    towerList.Add(tower);
-                    economy.gold -= tower.towerCost;
+                    towerList.Add(newTower);
+                    economy.gold -= newTower.towerCost;
                 }
             }
             else if (PlayerKeyReader.KeyPressed(Keys.Q))
             {
-                if (TowerPlacementManager.isPlaceable && economy.gold >= tower.towerCost)
+                Tower newTower = new Tower(new Vector2(x, y), "Archer");
+
+                if (economy.gold >= newTower.towerCost)
                 {
-                    tower = new Tower(new Vector2(x, y), "Archer");
-                    towerList.Add(tower);
-                    economy.gold -= tower.towerCost;
+                    towerList.Add(newTower);
+                    economy.gold -= newTower.towerCost;
                 }
             }
         }
@@ -87,10 +89,11 @@ namespace Tower_Defence
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            PlayerKeyReader.Update();
 
-           foreach (Tower tower in towerList)
+            BuildTower();
+
+            foreach (Tower tower in towerList)
             {
                 tower.Update(gameTime);
             }
