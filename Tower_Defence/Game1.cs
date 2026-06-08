@@ -96,6 +96,11 @@ namespace Tower_Defence
             foreach (Tower tower in towerList)
             {
                 tower.Update(gameTime);
+
+                if (PlayerKeyReader.KeyPressed(Keys.U) && tower.isSelected)
+                {
+                    tower.UpgradeTower();
+                }
             }
 
             foreach (Enemy enemy in enemyList)

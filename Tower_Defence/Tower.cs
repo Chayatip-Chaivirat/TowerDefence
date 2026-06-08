@@ -100,7 +100,7 @@ namespace Tower_Defence
 
         public void UpgradeTower()
         {
-            if (isSelected && towerLevel < 3)
+            if (towerLevel < 3 && economy.gold >= upgradeCost)
             {
                 towerLevel++;
                 economy.gold -= upgradeCost; // Deduct the upgrade cost from the player's gold
@@ -130,7 +130,6 @@ namespace Tower_Defence
         {
             DamageBasedOnLevel();
             TowerType();
-            UpgradeTower();
             SelectTower();
         }
 
