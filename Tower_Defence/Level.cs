@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Spline;
 
 namespace Tower_Defence
 {
-    internal class Level
+    public class Level
     {
+        SimplePath path;
+        float posTex;
+        
+        public Level(SimplePath path)   
+        {
+            this.path = path;
+            path.generateDefaultPath();
+            posTex = path.beginT;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            path.Draw(spriteBatch);
+        }
     }
 }
