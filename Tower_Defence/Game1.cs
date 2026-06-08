@@ -44,6 +44,7 @@ namespace Tower_Defence
             towerList = new List<Tower>();
             enemyList = new List<Enemy>();
             BuildTower();
+            economy = new Economy(new Vector2(10, 10));
         }
 
         public void BuildTower()
@@ -56,17 +57,19 @@ namespace Tower_Defence
             if (PlayerKeyReader.KeyPressed(Keys.E))
             {
                 tower = new Tower(new Vector2(x, y), "Wooden");
-                if (TowerPlacementManager.isPlaceable)
+                if (TowerPlacementManager.isPlaceable && economy.gold >= tower.towerCost)
                 {
                     towerList.Add(tower);
+                    economy.gold -= tower.towerCost;
                 }
             }
             else if (PlayerKeyReader.KeyPressed(Keys.Q))
             {
                 tower = new Tower(new Vector2(x, y), "Archer");
-                if (TowerPlacementManager.isPlaceable)
+                if (TowerPlacementManager.isPlaceable && economy.gold >= tower.towerCost)
                 {
                     towerList.Add(tower);
+                    economy.gold -= tower.towerCost;
                 }
             }
         }
@@ -76,7 +79,10 @@ namespace Tower_Defence
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+           foreach (Tower tower in towerList)
+            {
+                tower.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }

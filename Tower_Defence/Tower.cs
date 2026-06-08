@@ -74,6 +74,12 @@ namespace Tower_Defence
             }
         }
 
+        public void SelectTower()
+        {
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                isSelected = true; // Set the tower as selected when the player clicks on it
+        }
+
         public void UpgradeTower()
         {
             if (isSelected && towerLevel < 3)
@@ -111,6 +117,7 @@ namespace Tower_Defence
             DamageBasedOnLevel();
             TowerType();
             UpgradeTower();
+            SelectTower();
         }
 
         public void Draw(SpriteBatch spriteBatch)

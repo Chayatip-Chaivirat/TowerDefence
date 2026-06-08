@@ -12,11 +12,11 @@ namespace Tower_Defence
         Vector2 pos;
         Rectangle texRec;
 
-        public Economy( Vector2 pos, Rectangle texRec) // Constructor for the Economy class
+        public Economy( Vector2 pos) // Constructor for the Economy class
         {
             this.pos = pos;
-            this.texRec = texRec;
-            gold = 0;
+            texRec = new Rectangle(0,0,195,155);
+            gold = 100;
         }
 
         public void Update()
