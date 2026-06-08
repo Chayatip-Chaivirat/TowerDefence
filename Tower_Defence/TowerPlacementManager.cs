@@ -8,16 +8,17 @@ namespace Tower_Defence
     {
         static Level path;
         static Tower tower;
+        public static bool isPlaceable = true;
 
         public static void NotPlaceableOnOtherTower()
         {
             if (tower.towerTexRec.Intersects(tower.towerTexRec))
             {
-                tower.isPlaceable = false;
+                isPlaceable = false;
             }
             else
             {
-                tower.isPlaceable = true;
+                isPlaceable = true;
             }
         }
 
@@ -25,11 +26,11 @@ namespace Tower_Defence
         {
             if (!path.placeableForTower)
             {
-                tower.isPlaceable = false;
+                isPlaceable = false;
             }
             else
             {
-                tower.isPlaceable = true;
+                isPlaceable = true;
             }
         }
     }
