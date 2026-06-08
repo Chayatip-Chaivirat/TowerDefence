@@ -65,7 +65,7 @@ namespace Tower_Defence
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             DamageBasedOnLevel();
             TowerType();
