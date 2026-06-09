@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using SharpDX.MediaFoundation;
 using Spline;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 
 namespace Tower_Defence
@@ -16,7 +17,7 @@ namespace Tower_Defence
         private Texture2D towerTexture;
         private int towerDamage;
         private int towerRange;
-        private int towerLevel;
+        public int towerLevel;
         private string towerType;
         public bool isSelected = false; // Flag to determine if the tower is currently selected by the player
         public int towerCost;
@@ -25,7 +26,7 @@ namespace Tower_Defence
 
         Economy economy;
 
-        public Tower(Vector2 pos, string type) // Constructor for the Tower class
+        public Tower(Vector2 pos, string type, Economy economy) // Constructor for the Tower class
         {
             this.towerPos = pos;
             this.towerTexRec = new Rectangle(0, 0, 150, 150); // Default texture rectangle
@@ -33,7 +34,7 @@ namespace Tower_Defence
             this.towerLevel = 1;
             towerHitbox = new Rectangle((int)towerRange, (int)towerRange, (int)towerRange, (int)towerRange); // Initialize the hitbox with the tower's range
             TowerType();
-            economy = new Economy(new Vector2(10, 10)); // Initialize the economy object
+            this.economy = economy;
             this.towerBoundary = new Rectangle((int) towerPos.X, (int)towerPos.Y, 150, 150); // Set the boundary of the tower based on its position and texture size) 
         }
 
@@ -45,11 +46,13 @@ namespace Tower_Defence
                 {
                     towerDamage = 10;
                     towerRange = 50;
+                    upgradeCost = 20;
                 }
                 else if (towerType == "Archer")
                 {
                     towerDamage = 5;
                     towerRange = 100;
+                    upgradeCost = 40;
                 }
             }
             else if (towerLevel == 2)
@@ -59,14 +62,14 @@ namespace Tower_Defence
                     towerTexture = AssetManager.woodenTowerLevel1;
                     towerDamage = 30;
                     towerRange = 60;
-                    upgradeCost = 20;
+                    upgradeCost = 30;
                 }
                 else if (towerType == "Archer")
                 {
                     towerTexture = AssetManager.archerTowerLevel1;
                     towerDamage = 25;
                     towerRange = 110;
-                    upgradeCost = 40;
+                    upgradeCost = 50;
                 }
             }
             else if (towerLevel == 3)
@@ -76,14 +79,12 @@ namespace Tower_Defence
                     towerTexture = AssetManager.woodenTowerLevel2;
                     towerDamage = 40;
                     towerRange = 70;
-                    upgradeCost = 30;
                 }
                 else if (towerType == "Archer")
                 {
                     towerTexture = AssetManager.archerTowerLevel2;
                     towerDamage = 35;
                     towerRange = 120;
-                    upgradeCost = 50;
                 }
             }
         }
@@ -100,7 +101,7 @@ namespace Tower_Defence
             }
         }
 
-        public void UpgradeTower()
+        public void UpgradeTower(List<Tower> towerList)
         {
             if (towerLevel < 3 && economy.gold >= upgradeCost)
             {
@@ -131,7 +132,7 @@ namespace Tower_Defence
         public void Update(GameTime gameTime)
         {
             DamageBasedOnLevel();
-            TowerType();
+            //TowerType();
             SelectTower();
         }
 

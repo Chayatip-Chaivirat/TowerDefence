@@ -60,7 +60,7 @@ namespace Tower_Defence
 
             if (PlayerKeyReader.KeyPressed(Keys.E)) 
             {
-                Tower newTower = new Tower(new Vector2(x, y), "Wooden"); // Create a new tower at the mouse's position
+                Tower newTower = new Tower(new Vector2(x, y), "Wooden", economy); // Create a new tower at the mouse's position
 
                 if (economy.gold >= newTower.towerCost) // Check if the player has enough gold to build the tower
                 {
@@ -70,7 +70,7 @@ namespace Tower_Defence
             }
             else if (PlayerKeyReader.KeyPressed(Keys.Q))
             {
-                Tower newTower = new Tower(new Vector2(x, y), "Archer");
+                Tower newTower = new Tower(new Vector2(x, y), "Archer", economy);
 
                 if (economy.gold >= newTower.towerCost)
                 {
@@ -96,10 +96,9 @@ namespace Tower_Defence
             foreach (Tower tower in towerList)
             {
                 tower.Update(gameTime);
-
                 if (PlayerKeyReader.KeyPressed(Keys.W) && tower.isSelected)
                 {
-                    tower.UpgradeTower();
+                    tower.UpgradeTower(towerList);
                 }
             }
 
