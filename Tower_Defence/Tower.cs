@@ -21,6 +21,7 @@ namespace Tower_Defence
         public bool isSelected = false; // Flag to determine if the tower is currently selected by the player
         public int towerCost;
         public int upgradeCost;
+        private Rectangle towerBoundary;
 
         Economy economy;
 
@@ -33,6 +34,7 @@ namespace Tower_Defence
             towerHitbox = new Rectangle((int)towerRange, (int)towerRange, (int)towerRange, (int)towerRange); // Initialize the hitbox with the tower's range
             TowerType();
             economy = new Economy(new Vector2(10, 10)); // Initialize the economy object
+            this.towerBoundary = new Rectangle((int) towerPos.X, (int)towerPos.Y, 150, 150); // Set the boundary of the tower based on its position and texture size) 
         }
 
         public void DamageBasedOnLevel()
@@ -88,13 +90,13 @@ namespace Tower_Defence
 
         public void SelectTower()
         {
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && towerHitbox.Contains(Mouse.GetState().Position))
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && towerBoundary.Contains(Mouse.GetState().Position))
             {
                 isSelected = true; // Set the tower as selected when the player clicks on it
             }
-            else
+            else if (isSelected && Mouse.GetState().LeftButton == ButtonState.Pressed && !towerBoundary.Contains(Mouse.GetState().Position))
             {
-                isSelected = false; // Set the tower as not selected when the player clicks elsewhere
+                isSelected = false; // Deselect the tower when the player clicks outside of it
             }
         }
 

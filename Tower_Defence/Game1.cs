@@ -97,7 +97,7 @@ namespace Tower_Defence
             {
                 tower.Update(gameTime);
 
-                if (PlayerKeyReader.KeyPressed(Keys.U) && tower.isSelected)
+                if (PlayerKeyReader.KeyPressed(Keys.W) && tower.isSelected)
                 {
                     tower.UpgradeTower();
                 }
