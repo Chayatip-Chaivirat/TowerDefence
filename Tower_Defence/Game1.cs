@@ -18,7 +18,7 @@ namespace Tower_Defence
         List<Enemy> enemyList;
         Enemy enemy;
 
-        Tower tower;
+        //Tower tower;
         List<Tower> towerList;
 
         SpriteFont font;
@@ -98,7 +98,7 @@ namespace Tower_Defence
                 tower.Update(gameTime);
                 if (PlayerKeyReader.KeyPressed(Keys.W) && tower.isSelected)
                 {
-                    tower.UpgradeTower(towerList);
+                    tower.UpgradeTower();
                 }
             }
 
