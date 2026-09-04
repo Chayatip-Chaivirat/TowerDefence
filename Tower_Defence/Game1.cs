@@ -51,6 +51,18 @@ namespace Tower_Defence
             font = Content.Load<SpriteFont>("Font");
         }
 
+        private bool IsTowerPlaceable(Tower newTower) // Check if the new tower intersects with any existing towers
+        {
+            foreach (Tower existingTower in towerList)
+            {
+                if (newTower.Intersects(existingTower.GetBoundary())) // Check if the new tower boundary intersects with any existing tower's boundary
+                {
+                    return false; // If it does, return false (not placeable)
+                }
+            }
+
+            return true;
+        }
         public void BuildTower()
         {
             // At the mouse's position, create a new tower and add it to the tower list
@@ -58,21 +70,21 @@ namespace Tower_Defence
             int x = PlayerKeyReader.mouseState.X;
             int y = PlayerKeyReader.mouseState.Y;
 
-            if (PlayerKeyReader.KeyPressed(Keys.E)) 
+            if (PlayerKeyReader.KeyPressed(Keys.E) && TowerPlacementManager.isPlaceable) 
             {
                 Tower newTower = new Tower(new Vector2(x, y), "Wooden", economy); // Create a new tower at the mouse's position
 
-                if (economy.gold >= newTower.towerCost) // Check if the player has enough gold to build the tower
+                if (economy.gold >= newTower.towerCost && IsTowerPlaceable(newTower)) // Check if the player has enough gold to build the tower and if the tower can be placed (does not intersect with existing towers)
                 {
                     towerList.Add(newTower);
                     economy.gold -= newTower.towerCost;
                 }
             }
-            else if (PlayerKeyReader.KeyPressed(Keys.Q))
+            else if (PlayerKeyReader.KeyPressed(Keys.Q) && TowerPlacementManager.isPlaceable)
             {
                 Tower newTower = new Tower(new Vector2(x, y), "Archer", economy);
 
-                if (economy.gold >= newTower.towerCost)
+                if (economy.gold >= newTower.towerCost && IsTowerPlaceable(newTower))
                 {
                     towerList.Add(newTower);
                     economy.gold -= newTower.towerCost;

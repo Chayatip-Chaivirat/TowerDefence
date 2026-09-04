@@ -22,11 +22,11 @@ namespace Tower_Defence
             }
         }
 
-        public static void NotPlaceableOnPath()
+        public static void NotPlaceableOnPath() // Check if the tower is being placed on the path
         {
-            if (!path.placeableForTower)
+            if (!path.placeableForTower) 
             {
-                isPlaceable = false;
+                isPlaceable = false; 
             }
             else
             {

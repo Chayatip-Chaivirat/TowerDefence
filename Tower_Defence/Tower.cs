@@ -141,6 +141,17 @@ namespace Tower_Defence
             SelectTower();
         }
 
+        public bool Intersects(Rectangle rectangle) // Check if the tower placement intersects with another rectangle (e.g., another tower or the path)
+        {
+            return towerBoundary.Intersects(rectangle);
+        }
+
+        public Rectangle GetBoundary()
+        {
+            return towerBoundary;
+        }
+
+
         public void Draw(SpriteBatch spriteBatch)
         {
             Color color = isSelected ? Color.Green * 0.5f : Color.White; // Change the color of the tower when it is selected
