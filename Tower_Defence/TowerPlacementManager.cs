@@ -24,7 +24,7 @@ namespace Tower_Defence
 
         public static void NotPlaceableOnPath() // Check if the tower is being placed on the path
         {
-            if (!path.placeableForTower) 
+            if (!path.placeableForTower) // If the path is not placeable for towers, set isPlaceable to false
             {
                 isPlaceable = false; 
             }

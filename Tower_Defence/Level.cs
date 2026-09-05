@@ -16,7 +16,7 @@ namespace Tower_Defence
             this.path = path;
             path.generateDefaultPath();
             posTex = path.beginT;
-            placeableForTower = false;
+            placeableForTower = false; // Set to false initially, meaning towers cannot be placed on the path
         }
 
         public void Update(GameTime gameTime)
