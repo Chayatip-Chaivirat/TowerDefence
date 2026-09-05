@@ -67,8 +67,8 @@ namespace Tower_Defence
         {
             // At the mouse's position, create a new tower and add it to the tower list
             // Keybinding: E for Wooden Tower, Q for Archer Tower
-            int x = PlayerKeyReader.mouseState.X;
-            int y = PlayerKeyReader.mouseState.Y;
+            int x = PlayerKeyReader.mouseState.X - 20; // Adjust the position to center the tower on the mouse cursor
+            int y = PlayerKeyReader.mouseState.Y - 15; // Adjust the position to center the tower on the mouse cursor
 
             if (PlayerKeyReader.KeyPressed(Keys.E) && TowerPlacementManager.isPlaceable) 
             {
