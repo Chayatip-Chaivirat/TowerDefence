@@ -32,6 +32,9 @@ namespace Tower_Defence
 
         // Treasure chest 
         public static Texture2D treasureChestTexture;
+
+        //Enemy font
+        public static SpriteFont enemyFont;
         public static void LoadTexture(ContentManager content)
         {
             // Boar
@@ -58,6 +61,9 @@ namespace Tower_Defence
 
             // Treasure Chest
             treasureChestTexture = content.Load<Texture2D>("VillageAsset/PNG/Top-Down Simple Summer_Prop - Treasure Chest");
+
+            // Enemy font
+            enemyFont = content.Load<SpriteFont>("EnemyFont");
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Spline;
 
 namespace Tower_Defence
 {
@@ -11,6 +11,7 @@ namespace Tower_Defence
     {
         public static KeyboardState keyState, oldKeyState = Keyboard.GetState();
         public static MouseState mouseState, oldMouseState = Mouse.GetState();
+
         public static bool KeyPressed(Keys key)
         {
             return keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key);

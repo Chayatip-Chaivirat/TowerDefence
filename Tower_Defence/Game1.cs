@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Spline;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace Tower_Defence
 {
@@ -45,7 +47,7 @@ namespace Tower_Defence
             level = new Level(_path);
             towerList = new List<Tower>();
             enemyList = new List<Enemy>();
-            BuildTower();
+            //BuildTower();
             economy = new Economy(new Vector2(10, 10));
             SpawnEnemy();
             font = Content.Load<SpriteFont>("Font");
@@ -70,7 +72,7 @@ namespace Tower_Defence
             int x = PlayerKeyReader.mouseState.X - 20; // Adjust the position to center the tower on the mouse cursor
             int y = PlayerKeyReader.mouseState.Y - 15; // Adjust the position to center the tower on the mouse cursor
 
-            if (PlayerKeyReader.KeyPressed(Keys.E) && TowerPlacementManager.isPlaceable) 
+            if (PlayerKeyReader.KeyPressed(Keys.E))
             {
                 Tower newTower = new Tower(new Vector2(x, y), "Wooden", economy); // Create a new tower at the mouse's position
 
@@ -80,7 +82,7 @@ namespace Tower_Defence
                     economy.gold -= newTower.towerCost;
                 }
             }
-            else if (PlayerKeyReader.KeyPressed(Keys.Q) && TowerPlacementManager.isPlaceable)
+            else if (PlayerKeyReader.KeyPressed(Keys.Q))
             {
                 Tower newTower = new Tower(new Vector2(x, y), "Archer", economy);
 

@@ -33,21 +33,21 @@ namespace Tower_Defence
         {
             if (enemyLevel == 1)
             {
-                enemyHealth += 10;
-                enemyDamage += 10;
-                enemySpeed += 2;
+                enemyHealth = 10;
+                enemyDamage = 10;
+                enemySpeed = 2;
             }
             else if (enemyLevel == 2)
             {
-                enemyHealth += 20;
-                enemyDamage += 20;
-                enemySpeed += 4;
+                enemyHealth = 20;
+                enemyDamage = 20;
+                enemySpeed = 4;
             }
             else if (enemyLevel == 3)
             {
-                enemyHealth += 30;
-                enemyDamage += 30;
-                enemySpeed += 6;
+                enemyHealth = 30;
+                enemyDamage = 30;
+                enemySpeed = 6;
             }
         }
 
@@ -69,6 +69,7 @@ namespace Tower_Defence
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(enemyTexture, enemyPos, enemyTexRec, Color.White);
+            spriteBatch.DrawString(AssetManager.enemyFont, enemyHealth.ToString(), new Vector2(enemyPos.X, enemyPos.Y - 20), Color.Red);
         }
     }
 }
